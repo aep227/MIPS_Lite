@@ -1,26 +1,38 @@
 # MIPS_Lite
 
-Cut down MIPS inspired computer architecture. I designed this to brush up on my Verilog skills 
+Cut down MIPS inspired computer architecture. I designed this to brush up on my Verilog skills. Added a Python assembler to make creating programs easier.
 
 ## Features
 
 * 16-bit instructions
 * Seven function ALU (Addition, subtraction, multiplication, division, bitwise AND, bitwise OR, bitwise XOR)
 * Eight 8-bit registers
+* 3-bit Immediate values (0-7)
 * 6-bit data memory address space
 
 ## Supported Instructions
 
-* ADD
-* SUB
-* MULT
-* DIV
-* AND
-* OR
-* XOR
+Registers prefixed with $
+
+* ADD $Rs $Rt $Rd
+* SUB $Rs $Rt $Rd
+* MULT $Rs $Rt $Rd
+* DIV $Rs $Rt $Rd
+* AND $Rs $Rt $Rd
+* OR $Rs $Rt $Rd
+* XOR $Rs $Rt $Rd
 * "Immediate" versions of all the above (simply add I to the end i.e. ADDI, SUBI, etc)
-* LOAD
-* SAVE
+  * ADDI $Rs Immediate $Rd
+* LOAD $Rs Addr
+* SAVE $Rs Addr
+
+Example instructions:
+* Add register 1 and register 2, save the result in register 1
+  * ADD $1 $2 $1
+* Bitwise AND register 1 with 7 (8'b00000111), save the result in register 2
+  * ANDI $1 $2 7
+* Save register 6 to data memory at address 40
+  * SAVE $6 40 
 
 ## Instruction Format
 
