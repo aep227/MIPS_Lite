@@ -9,9 +9,9 @@ module Register_Mem(
     input [2:0] rd_in,
     input [7:0] from_reg_src,
     input reg_write,
-    output reg [7:0] rs_out,
-    output reg [7:0] rt_out,
-    output reg [7:0] save_out
+    output [7:0] rs_out,
+    output [7:0] rt_out,
+    output [7:0] save_out
     );
 
     reg [7:0] registers [0:7]; // 8 registers with 8-bit width
@@ -24,15 +24,15 @@ module Register_Mem(
         else begin
             if(reg_write) begin
                 if(ALU_op != 111) // Op is arithmetic. Use rd as destination
-                    registers[rd_in] = from_reg_src;
+                    registers[rd_in] <= from_reg_src;
                 else // Op is save/load. Use rs as destination
-                    registers[rs_in] = from_reg_src;
+                    registers[rs_in] <= from_reg_src;
             end
-
-            rs_out <= registers[rs_in];
-            rt_out <= registers[rt_in];
-            save_out <= registers[rs_in];
         end
     end
+
+    assign rs_out = registers[rs_in];
+    assign rt_out = registers[rt_in];
+    assign save_out = registers[rs_in];
 
 endmodule
