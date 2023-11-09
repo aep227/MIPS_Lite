@@ -14,7 +14,7 @@ module Register_Mem(
     output [7:0] save_out
     );
 
-    reg [2:0] registers [0:7]; // 8 registers with 8-bit width
+  reg [7:0] registers [7:0]; // 8 registers with 8-bit width
 
     always@(posedge clk or posedge rst) begin
         if(rst) begin
