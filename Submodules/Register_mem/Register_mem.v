@@ -14,12 +14,12 @@ module Register_Mem(
     output [7:0] save_out
     );
 
-    reg [7:0] registers [0:2]; // 8 registers with 8-bit width
+    reg [2:0] registers [0:7]; // 8 registers with 8-bit width
 
     always@(posedge clk or posedge rst) begin
         if(rst) begin
             integer i;
-            for(i = 0; i < 9; i = i + 1) registers[i] <= 8'd0;
+            for(i = 0; i < 8; i = i + 1) registers[i] <= 8'd0;
         end
         else begin
             if(reg_write) begin
